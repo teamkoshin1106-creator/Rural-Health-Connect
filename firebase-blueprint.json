@@ -1,0 +1,44 @@
+{
+  "entities": {
+    "UserProfile": {
+      "title": "User Profile",
+      "description": "Stores user demographic and health information",
+      "type": "object",
+      "properties": {
+        "uid": { "type": "string", "description": "Firebase Auth UID" },
+        "name": { "type": "string" },
+        "email": { "type": "string", "format": "email" },
+        "language": { "type": "string", "enum": ["en", "hi", "ta", "kn"] },
+        "bloodGroup": { "type": "string" },
+        "emergencyContact": { "type": "string" },
+        "offlineSyncStatus": { "type": "string" }
+      },
+      "required": ["uid", "name"]
+    },
+    "MedicineReminder": {
+      "title": "Medicine Reminder",
+      "description": "Stores medication schedules",
+      "type": "object",
+      "properties": {
+        "uid": { "type": "string" },
+        "medicineName": { "type": "string" },
+        "dosage": { "type": "string" },
+        "frequency": { "type": "string" },
+        "time": { "type": "string" },
+        "isActive": { "type": "boolean" },
+        "lastTaken": { "type": "string", "format": "date-time" }
+      },
+      "required": ["uid", "medicineName", "time"]
+    }
+  },
+  "firestore": {
+    "/users/{userId}": {
+      "schema": "UserProfile",
+      "description": "User profile data"
+    },
+    "/users/{userId}/reminders/{reminderId}": {
+      "schema": "MedicineReminder",
+      "description": "User specific medicine reminders"
+    }
+  }
+}

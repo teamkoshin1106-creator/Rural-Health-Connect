@@ -1,0 +1,42 @@
+@import "tailwindcss";
+
+@theme {
+  --color-medical-primary: #10b981;
+  --color-medical-secondary: #059669;
+  --color-medical-accent: #34d399;
+  --color-medical-bg: #f8fafc;
+  
+  --font-sans: "Inter", ui-sans-serif, system-ui, sans-serif;
+  --radius-3xl: 32px;
+}
+
+@layer base {
+  body {
+    @apply bg-slate-50 text-slate-900 antialiased;
+  }
+}
+
+@layer components {
+  .premium-card {
+    @apply bg-white rounded-[32px] p-6 shadow-sm border border-slate-100 transition-all duration-300 hover:shadow-md hover:border-slate-200;
+  }
+  
+  .medical-gradient {
+    @apply bg-gradient-to-br from-emerald-500 to-emerald-600;
+  }
+  
+  .emergency-pulse {
+    animation: emergency-pulse 2s infinite;
+  }
+}
+
+@keyframes shimmer {
+  0% { background-position: -200% 0; }
+  100% { background-position: 200% 0; }
+}
+
+@keyframes emergency-pulse {
+  0% { box-shadow: 0 0 0 0 rgba(225, 29, 72, 0.4); }
+  70% { box-shadow: 0 0 0 20px rgba(225, 29, 72, 0); }
+  100% { box-shadow: 0 0 0 0 rgba(225, 29, 72, 0); }
+}

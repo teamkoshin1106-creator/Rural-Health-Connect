@@ -1,0 +1,5 @@
+{
+  "name": "Rural Health Connect",
+  "description": "A premium mobile-first telemedicine app optimized for low-bandwidth rural environments with full multilingual support and offline-first capabilities.",
+  "requestFramePermissions": ["geolocation", "camera", "microphone"]
+}
