@@ -14,8 +14,6 @@ import {
 import { storage } from '../lib/storage';
 import { cn } from '../lib/utils';
 
-import { TopBar } from '../components/TopBar';
-
 export const Settings = () => {
   const { t, i18n } = useTranslation();
   const [memory, setMemory] = useState(storage.getMemory());
@@ -37,10 +35,16 @@ export const Settings = () => {
   ];
 
   return (
-    <div className="min-h-screen bg-slate-50">
-      <TopBar title={t('nav.settings')} />
-      
-      <div className="p-4 space-y-6 pb-24">
+    <div className="p-4 space-y-6 pb-24">
+      <header className="flex items-center gap-3">
+        <div className="p-3 rounded-2xl bg-emerald-50 text-emerald-600">
+          <SettingsIcon size={24} />
+        </div>
+        <div>
+          <h2 className="text-2xl font-bold text-slate-900">{t('nav.settings')}</h2>
+          <p className="text-slate-500 text-sm">Manage your preferences</p>
+        </div>
+      </header>
 
       {/* Demo Mode Section */}
       <section className="premium-card bg-emerald-900 text-white !p-5 space-y-4">

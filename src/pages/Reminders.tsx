@@ -12,28 +12,26 @@ import {
 import { storage } from '../lib/storage';
 import { cn } from '../lib/utils';
 
-import { TopBar } from '../components/TopBar';
-
 export const Reminders = () => {
   const { t } = useTranslation();
   const memory = storage.getMemory();
   const reminders = memory.reminders || [];
 
   return (
-    <div className="min-h-screen bg-slate-50">
-      <TopBar title={t('nav.reminders')} />
-      
-      <div className="p-4 space-y-6 pb-24">
-        <header className="flex justify-between items-end">
-          <div className="space-y-1">
-            <p className="text-xs font-bold text-slate-500 uppercase tracking-widest">
-              Your daily medication schedule
-            </p>
-          </div>
-          <button className="w-10 h-10 rounded-xl bg-emerald-500 text-white flex items-center justify-center shadow-lg shadow-emerald-200">
-            <Plus size={20} />
-          </button>
-        </header>
+    <div className="p-4 space-y-6 pb-24">
+      <header className="flex justify-between items-end">
+        <div className="space-y-1">
+          <h2 className="text-2xl font-black text-slate-900 tracking-tight uppercase">
+            {t('nav.reminders')}
+          </h2>
+          <p className="text-xs font-bold text-slate-500 uppercase tracking-widest">
+            Your daily medication schedule
+          </p>
+        </div>
+        <button className="w-10 h-10 rounded-xl bg-emerald-500 text-white flex items-center justify-center shadow-lg shadow-emerald-200">
+          <Plus size={20} />
+        </button>
+      </header>
 
       <div className="space-y-4">
         {reminders.length > 0 ? (

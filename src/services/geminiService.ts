@@ -38,13 +38,8 @@ export const geminiService = {
       ${symptoms}
       
       TASK:
-      1. Analyze the symptoms. If they are ambiguous or critical information is missing, provide 2-4 intelligent follow-up questions.
-      2. Follow-up questions MUST cover:
-         - Duration (How long has this been happening?)
-         - Severity (On a scale of 1-10, how bad is it?)
-         - Related Symptoms (Any other changes in your body?)
-         - Previous Actions (Have you taken any medicine or tried any home remedies?)
-      3. If symptoms are clear, provide a full differential diagnosis.
+      1. Analyze the symptoms. If they are ambiguous or critical information is missing (duration, severity, specific location), provide 2-4 intelligent follow-up questions instead of a final diagnosis.
+      2. If symptoms are clear, provide a full differential diagnosis.
       3. Cross-check current medications for potential side effects or interactions related to the new symptoms.
       4. If images are provided, analyze them for severity, infection risk, and visual markers.
       5. Generate a structured SOAP summary for doctor handoff.

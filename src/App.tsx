@@ -39,21 +39,18 @@ const ProtectedRoute = ({ children }: { children: React.ReactNode }) => {
   return <>{children}</>;
 };
 
-import { useLocation } from 'react-router-dom';
-
-const AppContent = () => {
+export default function App() {
   const [isEmergency, setIsEmergency] = useState(false);
-  const location = useLocation();
-  const isDashboard = location.pathname === '/';
 
   return (
-    <div className={cn(
-      "min-h-screen flex flex-col max-w-md mx-auto relative shadow-2xl shadow-emerald-900/10 transition-colors duration-500",
-      isEmergency ? "bg-rose-50" : "bg-slate-50/50"
-    )}>
-      {isDashboard && <AppHeader />}
-      
-      <main className="flex-1 overflow-y-auto">
+    <Router>
+      <div className={cn(
+        "min-h-screen flex flex-col max-w-md mx-auto relative shadow-2xl shadow-emerald-900/10 transition-colors duration-500",
+        isEmergency ? "bg-rose-50" : "bg-slate-50/50"
+      )}>
+        <AppHeader />
+        
+        <main className="flex-1 overflow-y-auto">
           <Suspense fallback={<PlaceholderPage title="common.loading" />}>
             <Routes>
               <Route path="/onboarding" element={<Onboarding />} />

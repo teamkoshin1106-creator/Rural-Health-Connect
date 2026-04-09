@@ -16,23 +16,21 @@ import { orchestrationService } from '../services/orchestrationService';
 import { storage } from '../lib/storage';
 import { cn } from '../lib/utils';
 
-import { TopBar } from '../components/TopBar';
-
 export const Doctors = () => {
   const { t, i18n } = useTranslation();
   const memory = storage.getMemory();
   const doctors = orchestrationService.getMatchingDoctors({ riskLevel: 'normal' } as any, i18n.language);
 
   return (
-    <div className="min-h-screen bg-slate-50">
-      <TopBar title={t('nav.appointments')} />
-      
-      <div className="p-4 space-y-6 pb-24">
-        <header className="space-y-1">
-          <p className="text-xs font-bold text-slate-500 uppercase tracking-widest">
-            Recommended specialists for you
-          </p>
-        </header>
+    <div className="p-4 space-y-6 pb-24">
+      <header className="space-y-1">
+        <h2 className="text-2xl font-black text-slate-900 tracking-tight uppercase">
+          {t('nav.appointments')}
+        </h2>
+        <p className="text-xs font-bold text-slate-500 uppercase tracking-widest">
+          Recommended specialists for you
+        </p>
+      </header>
 
       <div className="space-y-4">
         {doctors.map((doctor, index) => (

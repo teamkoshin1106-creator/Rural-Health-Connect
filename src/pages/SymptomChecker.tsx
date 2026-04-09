@@ -32,7 +32,6 @@ import { storage } from '../lib/storage';
 import { AIAnalysisResult, Doctor, Pharmacy, MedicalFacility, FollowUpTask, Consultation } from '../types';
 import { cn } from '../lib/utils';
 import { ConsultationRoom } from './ConsultationRoom';
-import { TopBar } from '../components/TopBar';
 
 export const SymptomChecker = () => {
   const { t, i18n } = useTranslation();
@@ -159,28 +158,19 @@ export const SymptomChecker = () => {
 
   if (result && currentFollowUpIndex !== -1 && result.followUpQuestions) {
     return (
-      <div className="min-h-screen bg-slate-50">
-        <TopBar 
-          title={t('symptoms.title')} 
-          onBack={() => {
-            if (currentFollowUpIndex > 0) {
-              setCurrentFollowUpIndex(currentFollowUpIndex - 1);
-              setFollowUpAnswers(prev => prev.slice(0, -1));
-            } else {
-              setResult(null);
-              setCurrentFollowUpIndex(-1);
-              setFollowUpAnswers([]);
-            }
-          }} 
-        />
-        
-        <div className="p-4 space-y-6 pb-24">
-          <motion.div
-            initial={{ opacity: 0, x: 20 }}
-            animate={{ opacity: 1, x: 0 }}
-            key={currentFollowUpIndex}
-            className="premium-card space-y-6"
-          >
+      <div className="p-4 space-y-6 pb-24">
+        <header className="flex items-center gap-4">
+          <button onClick={() => { setResult(null); setCurrentFollowUpIndex(-1); setFollowUpAnswers([]); }} className="p-2 rounded-full bg-slate-100">
+            <ArrowLeft size={20} />
+          </button>
+          <h2 className="text-xl font-bold text-slate-900">Follow-up Questions</h2>
+        </header>
+
+        <motion.div
+          initial={{ opacity: 0, x: 20 }}
+          animate={{ opacity: 1, x: 0 }}
+          className="premium-card space-y-6"
+        >
           <div className="space-y-2">
             <p className="text-xs font-bold text-emerald-600 uppercase tracking-wider">Question {currentFollowUpIndex + 1} of {result.followUpQuestions.length}</p>
             <h3 className="text-lg font-bold text-slate-900">{result.followUpQuestions[currentFollowUpIndex]}</h3>
@@ -207,20 +197,16 @@ export const SymptomChecker = () => {
 
   if (result && currentFollowUpIndex === -1) {
     return (
-      <div className="min-h-screen bg-slate-50">
-        <TopBar 
-          title={t('symptoms.resultTitle')} 
-          onBack={() => {
-            if (followUpAnswers.length > 0) {
-              setCurrentFollowUpIndex(result.followUpQuestions?.length ? result.followUpQuestions.length - 1 : -1);
-              setFollowUpAnswers(prev => prev.slice(0, -1));
-            } else {
-              setResult(null);
-            }
-          }} 
-        />
-        
-        <div className="p-4 space-y-8 pb-24">
+      <div className="p-4 space-y-8 pb-24">
+        <header className="flex items-center justify-between">
+          <button onClick={() => { setResult(null); setFollowUpAnswers([]); }} className="p-2 rounded-full bg-white border border-slate-100 shadow-sm">
+            <ArrowLeft size={20} />
+          </button>
+          <div className="flex items-center gap-2">
+            <div className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse" />
+            <span className="text-[10px] font-black text-slate-400 uppercase tracking-widest">Analysis Complete</span>
+          </div>
+        </header>
 
         {/* Main Condition Hero Card */}
         <motion.section 
@@ -683,13 +669,11 @@ export const SymptomChecker = () => {
   }
 
   return (
-    <div className="min-h-screen bg-slate-50">
-      <TopBar title={t('symptoms.title')} />
-      
-      <div className="p-4 space-y-6 pb-24">
-        <header className="space-y-1">
-          <p className="text-slate-500 text-sm">{t('symptoms.subtitle')}</p>
-        </header>
+    <div className="p-4 space-y-6 pb-24">
+      <header className="space-y-1">
+        <h2 className="text-2xl font-bold text-slate-900">{t('symptoms.title')}</h2>
+        <p className="text-slate-500 text-sm">{t('symptoms.subtitle')}</p>
+      </header>
 
       <div className="premium-card space-y-4">
         <textarea

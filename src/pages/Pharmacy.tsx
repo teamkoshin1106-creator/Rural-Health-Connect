@@ -14,8 +14,6 @@ import { orchestrationService } from '../services/orchestrationService';
 import { storage } from '../lib/storage';
 import { cn } from '../lib/utils';
 
-import { TopBar } from '../components/TopBar';
-
 export const Pharmacy = () => {
   const { t } = useTranslation();
   const memory = storage.getMemory();
@@ -24,15 +22,15 @@ export const Pharmacy = () => {
   const pharmacies = orchestrationService.getNearbyPharmacies(lat, lng);
 
   return (
-    <div className="min-h-screen bg-slate-50">
-      <TopBar title={t('nav.pharmacy')} />
-      
-      <div className="p-4 space-y-6 pb-24">
-        <header className="space-y-1">
-          <p className="text-xs font-bold text-slate-500 uppercase tracking-widest">
-            Nearby verified medicine centers
-          </p>
-        </header>
+    <div className="p-4 space-y-6 pb-24">
+      <header className="space-y-1">
+        <h2 className="text-2xl font-black text-slate-900 tracking-tight uppercase">
+          {t('nav.pharmacy')}
+        </h2>
+        <p className="text-xs font-bold text-slate-500 uppercase tracking-widest">
+          Nearby verified medicine centers
+        </p>
+      </header>
 
       <div className="relative">
         <Search className="absolute left-4 top-1/2 -translate-y-1/2 text-slate-400 w-4 h-4" />
